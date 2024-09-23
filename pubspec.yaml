@@ -34,6 +34,7 @@ flutter:
         - asset: font/Philosopher-Regular.ttf
 
 
+
   assets:
     - lib/images/1.jpg
     - lib/images/q1.jpeg
