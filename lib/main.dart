@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart'; // استيراد Firebase Core
 import 'login.dart'; // استيراد صفحة تسجيل الدخول
 
-//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-void main() {
+void main() async {
   runApp(MyApp());
 }
 

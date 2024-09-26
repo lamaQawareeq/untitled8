@@ -16,7 +16,7 @@ dependencies:
   firebase_auth: ^4.6.0
   http: ^1.2.0          # تحديث النسخة إذا لزم الأمر
   device_info_plus: ^9.0.0
-
+  email_otp: ^3.0.2 
 dev_dependencies:
   flutter_test:
     sdk: flutter

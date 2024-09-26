@@ -3,8 +3,10 @@ import 'package:flutter/gestures.dart';
 import 'update_pass.dart';
 
 class VerificationCodeScreen extends StatelessWidget {
-  const VerificationCodeScreen({super.key});
+  final String otpCode; // إضافة هذا السطر
 
+  const VerificationCodeScreen({Key? key, required this.otpCode})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +52,10 @@ class VerificationCodeScreen extends StatelessWidget {
             // مربعات إدخال كود التحقق
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(4, (index) {
+              children: List.generate(6, (index) { // تغيير العدد إلى 6
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 5),
-                  width: 60,
+                  width: 40, // تقليل العرض ليكون مناسبًا لستة مربعات
                   child: const TextField(
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
@@ -67,7 +69,6 @@ class VerificationCodeScreen extends StatelessWidget {
 
             const SizedBox(height: 40),
 
-            // زر تأكيد الكود
             // زر تأكيد الكود
             ElevatedButton(
               onPressed: () {
