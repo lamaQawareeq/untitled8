@@ -4,9 +4,13 @@ import 'update_pass.dart';
 
 class VerificationCodeScreen extends StatelessWidget {
   final String otpCode; // إضافة هذا السطر
+  final String email; // إضافة خاصية البريد الإلكتروني
 
-  const VerificationCodeScreen({Key? key, required this.otpCode})
-      : super(key: key);
+  VerificationCodeScreen({Key? key, required this.otpCode, required this.email}) : super(key: key);
+
+  // تعريف قائمة من TextEditingController
+  final List<TextEditingController> controllers = List.generate(6, (index) => TextEditingController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,38 +56,57 @@ class VerificationCodeScreen extends StatelessWidget {
             // مربعات إدخال كود التحقق
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(6, (index) { // تغيير العدد إلى 6
+              children: List.generate(6, (index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 5),
-                  width: 40, // تقليل العرض ليكون مناسبًا لستة مربعات
-                  child: const TextField(
+                  width: 40,
+                  child: TextField(
+                    controller: controllers[index], // استخدام الاسم الصحيح
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (value) {
+                      if (value.length == 1 && index < 5) {
+                        // الانتقال إلى المربع التالي
+                        FocusScope.of(context).nextFocus();
+                      } else if (value.isEmpty && index > 0) {
+                        // العودة إلى المربع السابق
+                        FocusScope.of(context).previousFocus();
+                      }
+                    },
                   ),
                 );
               }),
             ),
-
             const SizedBox(height: 40),
 
             // زر تأكيد الكود
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          UpdatePasswordScreen()), // الانتقال إلى واجهة تحديث كلمة السر
-                );
+                // تجميع الرموز المدخلة
+                String enteredCode = controllers.map((controller) => controller.text).join();
+
+                // تحقق من الرمز المدخل
+                if (enteredCode != 655490) { // تحقق من الرمز المدخل
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UpdatePasswordScreen(email: email), // تمرير البريد الإلكتروني
+                    ),
+                  );
+                } else {
+                  // يمكنك إضافة رسالة خطأ إذا كان الرمز غير صحيح
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('The entered code is incorrect.')),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(118, 170, 0, 116),
                 foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -116,11 +139,10 @@ class VerificationCodeScreen extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: "Foreget Password",
+                    text: "Forget Password",
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.pop(
-                            context); // العودة إلى واجهة تغيير كلمة المرور
+                        Navigator.pop(context); // العودة إلى واجهة تغيير كلمة المرور
                       },
                   ),
                 ],

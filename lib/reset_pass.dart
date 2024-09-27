@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:email_otp/email_otp.dart';
 import 'ver_code.dart';
-import 'dart:math'; // إضافة المكتبة لرؤية دالة العشوائية
+import 'dart:math';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -15,13 +15,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   TextEditingController emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // إعدادات مكتبة Email OTP بدون appEmail و appPassword
   late EmailOTP emailOtp;
 
   @override
   void initState() {
     super.initState();
-    // تهيئة EmailOTP هنا
     emailOtp = EmailOTP();
   }
 
@@ -32,7 +30,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // صورة الخلفية
             Container(
               height: 200,
               decoration: const BoxDecoration(
@@ -42,8 +39,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 ),
               ),
             ),
-
-            // شعار التطبيق
             Padding(
               padding: const EdgeInsets.all(20),
               child: Image.asset(
@@ -54,8 +49,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ),
             ),
             const SizedBox(height: 30),
-
-            // عنوان التطبيق
             const Text(
               "Forget Password",
               style: TextStyle(
@@ -66,15 +59,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ),
             ),
             const SizedBox(height: 40),
-
-            // حقل البريد الإلكتروني مع التحقق
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
-                    // حقل إدخال البريد الإلكتروني
                     TextFormField(
                       controller: emailController,
                       style: const TextStyle(
@@ -101,7 +91,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email';
                         } else if (!RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+/=?^_{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                             .hasMatch(value)) {
                           return 'Please enter a valid email address';
                         }
@@ -112,32 +102,28 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 ),
               ),
             ),
-
             const SizedBox(height: 40),
-
-            // زر إرسال رمز التحقق
             ElevatedButton(
               onPressed: () async {
                 if (_formKey.currentState != null &&
                     _formKey.currentState!.validate()) {
                   String userEmail = emailController.text;
-
-                  // إنشاء رمز تحقق مكون من 4 أرقام
                   String otp = _generateOtp(4);
 
-                  // محاولة إرسال OTP
                   try {
-                    // إرسال OTP
-                     bool success = await EmailOTP.sendOTP(email: userEmail);
+                    bool success = await EmailOTP.sendOTP(email: userEmail);
                     if (success) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text("OTP has been sent")),
                       );
-                      // الانتقال إلى واجهة إدخال كود التحقق
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => VerificationCodeScreen(otpCode: otp)),
+                          builder: (context) => VerificationCodeScreen(
+                            otpCode: otp,
+                            email: userEmail, // تمرير البريد الإلكتروني
+                          ),
+                        ),
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -171,10 +157,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 ),
               ),
             ),
-
             const SizedBox(height: 30),
-
-            // رابط العودة إلى تسجيل الدخول
             RichText(
               text: TextSpan(
                 style: const TextStyle(
@@ -209,7 +192,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     final random = Random();
     String otp = '';
     for (int i = 0; i < length; i++) {
-      otp += random.nextInt(10).toString(); // الحصول على رقم عشوائي بين 0-9
+      otp += random.nextInt(10).toString();
     }
     return otp;
   }
