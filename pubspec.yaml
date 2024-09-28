@@ -16,7 +16,8 @@ dependencies:
   firebase_auth: ^4.6.0
   http: ^1.2.0          # تحديث النسخة إذا لزم الأمر
   device_info_plus: ^9.0.0
-  email_otp: ^3.0.2 
+  email_otp: ^3.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -24,6 +25,19 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  
+
+  fonts:
+    - family: Pacifico
+      fonts:
+        - asset: font/Pacifico-Regular.ttf
+
+    - family: Philosopher
+      fonts:
+        - asset: font/Philosopher-Regular.ttf
+
+
+
   assets:
     - lib/images/1.jpg
     - lib/images/q1.jpeg

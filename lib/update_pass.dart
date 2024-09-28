@@ -90,6 +90,20 @@ Future<void> updatePassword(String email, String password) async {
                 ),
               ),
             ),
+
+ Padding(
+              padding: const EdgeInsets.all(20),
+              child: Image.asset(
+                'lib/images/q1.jpeg',
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 120,
+              ),
+            ),
+            SizedBox(height: 30),
+
+
+
             Text(
               "Update Password",
               style: TextStyle(

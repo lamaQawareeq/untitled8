@@ -107,7 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
             Text(
               "Project Name",
               style: TextStyle(
-                fontFamily: 'Pacifico',
+               fontFamily: 'Pacifico',
+
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: const Color.fromARGB(150, 170, 0, 113),
@@ -119,12 +120,12 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextField(
                 controller: _emailController,
                 style: TextStyle(
-                  fontFamily: 'Philosopher',
+                   fontFamily: 'Philosopher',
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
-                  hintText: 'Email',
+                  hintText: 'Your Email',
                   filled: true,
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
@@ -144,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextField(
                 controller: _passwordController,
                 style: TextStyle(
-                  fontFamily: 'Philosopher',
+                   fontFamily: 'Philosopher',
                   fontSize: 16,
                 ),
                 obscureText: !_isPasswordVisible,
