@@ -6,7 +6,7 @@ class VerificationCodeScreen extends StatelessWidget {
   final String otpCode; // إضافة هذا السطر
   final String email; // إضافة خاصية البريد الإلكتروني
 
-  VerificationCodeScreen({Key? key, required this.otpCode, required this.email}) : super(key: key);
+  VerificationCodeScreen({super.key, required this.otpCode, required this.email});
 
   // تعريف قائمة من TextEditingController
   final List<TextEditingController> controllers = List.generate(6, (index) => TextEditingController());
@@ -64,7 +64,7 @@ class VerificationCodeScreen extends StatelessWidget {
                     controller: controllers[index], // استخدام الاسم الصحيح
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                     ),
                     onChanged: (value) {
@@ -99,7 +99,7 @@ class VerificationCodeScreen extends StatelessWidget {
                 } else {
                   // يمكنك إضافة رسالة خطأ إذا كان الرمز غير صحيح
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('The entered code is incorrect.')),
+                    const SnackBar(content: Text('The entered code is incorrect.')),
                   );
                 }
               },
@@ -111,7 +111,7 @@ class VerificationCodeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 "Confirm Code",
                 style: TextStyle(
                   fontFamily: 'Philosopher',

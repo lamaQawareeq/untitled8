@@ -3,12 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:device_info_plus/device_info_plus.dart';
-import 'profile_page.dart';
 import 'signup.dart';
 import 'reset_pass.dart';
-import 'HomePage.dart';
+import 'EditProfilePage.dart'; 
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       var response = await http.post(
         Uri.parse(
-            'http://192.168.88.16:3001/auth/login'), // تأكد من صحة هذا الرابط
+            'http://10.0.2.2:3001/auth/login'), // تأكد من صحة هذا الرابط
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -57,7 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => HomePage()), // انتقل إلى صفحة الرئيسية
+            //  builder: (context) => ProfilePage(email: email),
+               builder: (context) =>  EditProfilePage(),
+              //builder: (context) => HomePage()
+              ), // انتقل إلى صفحة الرئيسية
         );
       } else {
         // إذا كانت هناك مشكلة
@@ -80,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -97,60 +101,60 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Container(
               height: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('lib/images/1.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            Text(
+            const Text(
               "Project Name",
               style: TextStyle(
                fontFamily: 'Pacifico',
 
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(150, 170, 0, 113),
+                color: Color.fromARGB(150, 170, 0, 113),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
                 controller: _emailController,
-                style: TextStyle(
+                style: const TextStyle(
                    fontFamily: 'Philosopher',
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                   hintText: 'Your Email',
                   filled: true,
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
                 controller: _passwordController,
-                style: TextStyle(
+                style: const TextStyle(
                    fontFamily: 'Philosopher',
                   fontSize: 16,
                 ),
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: const Icon(Icons.lock),
                   suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -168,16 +172,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   fillColor: const Color.fromARGB(118, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
@@ -187,10 +191,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ResetPasswordScreen()),
+                          builder: (context) => const ResetPasswordScreen()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     "Forget Your password?",
                     style: TextStyle(
                       fontFamily: 'Philosopher',
@@ -201,30 +205,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _login, // استدعاء دالة تسجيل الدخول
-              child: Text(
+              onPressed: _login,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(118, 170, 0, 116),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ), // استدعاء دالة تسجيل الدخول
+              child: const Text(
                 "Login",
                 style: TextStyle(
                   fontFamily: 'Philosopher',
                   fontSize: 20,
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(118, 170, 0, 116),
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Don't Have An Account?",
                   style: TextStyle(
                     fontFamily: 'Philosopher',
@@ -236,53 +240,50 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUpScreen()),
+                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     "Sign up",
                     style: TextStyle(
                       fontFamily: 'Philosopher',
                       fontSize: 20,
-                      color: const Color.fromARGB(255, 170, 0, 113),
+                      color: Color.fromARGB(255, 170, 0, 113),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               "OR",
               style: TextStyle(
                 fontFamily: 'Philosopher',
                 fontSize: 18,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.facebook),
+                  icon: const FaIcon(FontAwesomeIcons.facebook),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
-                    );
+                    
                   },
                   color: const Color.fromARGB(255, 170, 0, 113),
                   iconSize: 32,
                 ),
-                SizedBox(width: 30),
+                const SizedBox(width: 30),
                 IconButton(
-                  icon: FaIcon(FontAwesomeIcons.twitter),
+                  icon: const FaIcon(FontAwesomeIcons.twitter),
                   onPressed: () {},
                   color: const Color.fromARGB(255, 170, 0, 113),
                   iconSize: 32,
                 ),
-                SizedBox(width: 30),
+                const SizedBox(width: 30),
                 IconButton(
-                  icon: Icon(Icons.email),
+                  icon: const Icon(Icons.email),
                   onPressed: () {},
                   color: const Color.fromARGB(255, 170, 0, 113),
                   iconSize: 32,

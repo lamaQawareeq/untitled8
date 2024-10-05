@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'login.dart';
 import 'HomePage.dart';
 class UpdatePasswordScreen extends StatefulWidget {
   final String email; // إضافة البريد الإلكتروني كمتغير
-  UpdatePasswordScreen({Key? key, required this.email}) : super(key: key);
+  const UpdatePasswordScreen({super.key, required this.email});
 
   @override
   _UpdatePasswordScreenState createState() => _UpdatePasswordScreenState();
@@ -17,7 +16,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 Future<void> updatePassword(String email, String password) async {
-  final url = 'http://192.168.88.16:3001/auth/update_pass';
+  const url = 'http://10.0.2.2:3001/auth/update_pass';
 
   try {
     final response = await http.put(
@@ -41,7 +40,7 @@ Future<void> updatePassword(String email, String password) async {
       // الانتقال إلى الصفحة الرئيسية بعد نجاح التحديث
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } else {
       print('Failed to update password: ${response.body}');
@@ -65,7 +64,7 @@ Future<void> updatePassword(String email, String password) async {
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -83,7 +82,7 @@ Future<void> updatePassword(String email, String password) async {
             // تصميم الواجهة كما هو بدون تعديل
             Container(
               height: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('lib/images/1.jpg'),
                   fit: BoxFit.cover,
@@ -100,20 +99,20 @@ Future<void> updatePassword(String email, String password) async {
                 height: 120,
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
 
 
 
-            Text(
+            const Text(
               "Update Password",
               style: TextStyle(
                 fontFamily: 'Pacifico',
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(150, 170, 0, 113),
+                color: Color.fromARGB(150, 170, 0, 113),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
 
             // حقل إدخال كلمة السر الجديدة
             Padding(
@@ -121,14 +120,14 @@ Future<void> updatePassword(String email, String password) async {
               child: TextField(
                 controller: newPasswordController,
                 obscureText: !_isNewPasswordVisible,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Philosopher',
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
                   labelText: "New Password",
-                  prefixIcon: Icon(Icons.lock,
-                      color: const Color.fromARGB(150, 170, 0, 113)),
+                  prefixIcon: const Icon(Icons.lock,
+                      color: Color.fromARGB(150, 170, 0, 113)),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _isNewPasswordVisible
@@ -147,12 +146,12 @@ Future<void> updatePassword(String email, String password) async {
                   fillColor: const Color.fromARGB(0, 0, 0, 0),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // حقل تأكيد كلمة السر
             Padding(
@@ -160,14 +159,14 @@ Future<void> updatePassword(String email, String password) async {
               child: TextField(
                 controller: confirmPasswordController,
                 obscureText: !_isConfirmPasswordVisible,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Philosopher',
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
                   labelText: "Confirm Password",
-                  prefixIcon: Icon(Icons.lock,
-                      color: const Color.fromARGB(150, 170, 0, 113)),
+                  prefixIcon: const Icon(Icons.lock,
+                      color: Color.fromARGB(150, 170, 0, 113)),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _isConfirmPasswordVisible
@@ -186,12 +185,12 @@ Future<void> updatePassword(String email, String password) async {
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
 
             // زر تحديث كلمة السر
           // زر تحديث كلمة السر
@@ -205,19 +204,19 @@ ElevatedButton(
       updatePassword(widget.email, newPasswordController.text); // تمرير البريد الإلكتروني وكلمة المرور الجديدة
     }
   },
-  child: Text(
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(118, 170, 0, 116),
+    foregroundColor: Colors.white,
+    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+  ),
+  child: const Text(
     "Update Password",
     style: TextStyle(
       fontFamily: 'Philosopher',
       fontSize: 20,
-    ),
-  ),
-  style: ElevatedButton.styleFrom(
-    backgroundColor: const Color.fromARGB(118, 170, 0, 116),
-    foregroundColor: Colors.white,
-    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30),
     ),
   ),
 ),

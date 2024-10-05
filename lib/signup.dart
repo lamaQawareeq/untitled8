@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'login.dart'; // تأكد من تعديل المسار حسب مكان ملف واجهة تسجيل الدخول
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -24,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             // صورة الخلفية
             Container(
               height: 100,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('lib/images/1.jpg'),
                   fit: BoxFit.cover,
@@ -32,21 +34,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             // شعار التطبيق
-            Text(
+            const Text(
               "Signed up",
               style: TextStyle(
                 fontFamily: 'Pacifico', // استخدام الخط الثاني
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(150, 170, 0, 113),
+                color: Color.fromARGB(150, 170, 0, 113),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             // حقل الاسم الأول
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(fontFamily: 'Philosopher', fontSize: 16),
+                style: const TextStyle(fontFamily: 'Philosopher', fontSize: 16),
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person,
                       color: iconColor), // تغيير لون الأيقونة
@@ -55,23 +57,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // حقل الاسم الأخير
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(fontFamily: 'Philosopher', fontSize: 16),
+                style: const TextStyle(fontFamily: 'Philosopher', fontSize: 16),
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person,
                       color: iconColor), // تغيير لون الأيقونة
@@ -80,23 +82,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // حقل البريد الإلكتروني
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(fontFamily: 'Philosopher', fontSize: 16),
+                style: const TextStyle(fontFamily: 'Philosopher', fontSize: 16),
                 decoration: InputDecoration(
                   prefixIcon:
                       Icon(Icons.email, color: iconColor), // تغيير لون الأيقونة
@@ -105,23 +107,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // حقل كلمة المرور مع أيقونة العين
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(fontFamily: 'Philosopher', fontSize: 16),
+                style: const TextStyle(fontFamily: 'Philosopher', fontSize: 16),
                 obscureText:
                     !_isPasswordVisible, // التحكم في إخفاء/إظهار كلمة المرور
                 decoration: InputDecoration(
@@ -146,23 +148,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // حقل رقم الهاتف
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(fontFamily: 'Philosopher', fontSize: 16),
+                style: const TextStyle(fontFamily: 'Philosopher', fontSize: 16),
                 decoration: InputDecoration(
                   prefixIcon:
                       Icon(Icons.phone, color: iconColor), // تغيير لون الأيقونة
@@ -171,23 +173,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue, width: 2),
+                    borderSide: const BorderSide(color: Colors.blue, width: 2),
                   ),
                 ),
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // حقل العنوان
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Philosopher', // استخدام الخط الأول
                   fontSize: 16, // حجم الخط
                 ),
@@ -199,14 +201,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                       width: 2,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                       width: 2,
                     ),
@@ -215,13 +217,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // حقل تاريخ الميلاد
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Philosopher', // استخدام الخط الأول
                   fontSize: 16, // حجم الخط
                 ),
@@ -233,14 +235,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fillColor: const Color.fromARGB(131, 240, 240, 240),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                       width: 2,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                       width: 2,
                     ),
@@ -249,7 +251,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // خيار اختيار الجنس
             Padding(
@@ -270,7 +272,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         activeColor: const Color.fromARGB(
                             118, 170, 0, 116), // لون الدائرة عند الاختيار
                       ),
-                      Text('Male', style: TextStyle(fontSize: 16)),
+                      const Text('Male', style: TextStyle(fontSize: 16)),
                     ],
                   ),
                   Row(
@@ -286,14 +288,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         activeColor: const Color.fromARGB(
                             118, 170, 0, 116), // لون الدائرة عند الاختيار
                       ),
-                      Text('Female', style: TextStyle(fontSize: 16)),
+                      const Text('Female', style: TextStyle(fontSize: 16)),
                     ],
                   ),
                 ],
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // زر تسجيل الدخول
             ElevatedButton(
@@ -301,7 +303,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // تنقل المستخدم إلى صفحة تسجيل الدخول عند النقر على الزر
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) =>   const LoginScreen()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -310,9 +312,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: Padding(
+              child: const Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 100),
+                    EdgeInsets.symmetric(vertical: 15, horizontal: 100),
                 child: Text(
                   'Sign Up',
                   style: TextStyle(
@@ -325,26 +327,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // رابط لتسجيل الدخول إذا كان لديك حساب
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Already have an account?"),
+                const Text("Already have an account?"),
                 TextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(builder: (context) => const LoginScreen()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     "Login",
                     style: TextStyle(
                       fontFamily: 'Philosopher',
                       fontSize: 20,
-                      color: const Color.fromARGB(255, 170, 0, 113),
+                      color: Color.fromARGB(255, 170, 0, 113),
                     ),
                   ),
                 ),

@@ -17,12 +17,14 @@ dependencies:
   http: ^1.2.0          # تحديث النسخة إذا لزم الأمر
   device_info_plus: ^9.0.0
   email_otp: ^3.0.2
-
+  video_player: ^2.4.5 
+  image_picker: any
+  permission_handler: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-
+  file_picker: ^8.1.2
 flutter:
   uses-material-design: true
   
@@ -39,5 +41,17 @@ flutter:
 
 
   assets:
+    - lib/videos/22.mp4
+    - lib/videos/11.mp4
+    - lib/videos/4.mp4
+    - lib/videos/7.mp4
+    - lib/videos/6.mp4
+    - lib/videos/2.mp4
+    - lib/videos/video2.mp4
+    - lib/images/Molokhiya.jpg
     - lib/images/1.jpg
     - lib/images/q1.jpeg
+    - lib/images/im.jpg
+    - lib/images/5.jpg
+    - lib/images/3.jpg
+    - lib/videos/is1.mp4

@@ -1,11 +1,62 @@
 import 'package:flutter/material.dart';
-import 'EditProfilePage.dart'; // تأكد من استيراد واجهة تعديل الملف الشخصي
+// تأكد من استيراد واجهة تعديل الملف الشخصي
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class ProfilePage extends StatefulWidget {
+  final String email;
+
+  const ProfilePage({super.key, required this.email});
+
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String firstName = '';
+  String lastName = '';
+  String? profileImage;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    print('Fetching data for email: ${widget.email}');
+    try {
+      var response = await http.post(
+        Uri.parse(
+            'http://10.0.2.2:3001/auth/updateprofile'), // تأكد من صحة الرابط
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': widget.email,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        print(data); // اضف هذا السطر لطباعة البيانات
+        setState(() {
+          firstName =
+              data['first_name'] ?? ''; // تأكد من أن الحقول موجودة في الاستجابة
+          lastName = data['last_name'] ?? '';
+        });
+      } else {
+          print('Failed to load user data, status code: ${response.statusCode}'); 
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    String? profileImage;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -66,27 +117,30 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Lama Qawareeq',
-              style: TextStyle(
-                fontSize: 18,
+            Text(
+              '$firstName $lastName',
+              style: const TextStyle(
+                fontSize: 23,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Philosopher',
               ),
             ),
-            const Text(
-              'LamaQawareeq@gmail.com',
-              style: TextStyle(
+            Text(
+              widget.email,
+              style: const TextStyle(
+                fontSize: 20,
                 fontFamily: 'Philosopher',
               ),
             ),
             const SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EditProfilePage()),
-                );
+               // Navigator.push(
+                 // context
+                  //,
+               //   MaterialPageRoute(
+                   //   builder: (context) => const EditProfilePage()),
+              //  );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(150, 170, 0, 113),
@@ -96,7 +150,7 @@ class ProfilePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Edit Profile',
                 style: TextStyle(
                   fontFamily: 'Philosopher',

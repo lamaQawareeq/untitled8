@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart'; // استيراد Firebase Core
+// استيراد Firebase Core
 import 'login.dart'; // استيراد صفحة تسجيل الدخول
 
 void main() async {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal, // تغيير اللون الرئيسي للتطبيق
       ),
-      home: LoginScreen(), // تعيين صفحة تسجيل الدخول كصفحة البداية
+      home:  const LoginScreen(), // تعيين صفحة تسجيل الدخول كصفحة البداية
     );
   }
 }
