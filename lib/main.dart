@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // استيراد Firebase Core
-import 'login.dart'; // استيراد صفحة تسجيل الدخول
+import 'login.dart';
+import 'FoodPage.dart'; // استيراد صفحة تسجيل الدخول
 
 void main() async {
   runApp(const MyApp());
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal, // تغيير اللون الرئيسي للتطبيق
       ),
-      home:  const LoginScreen(), // تعيين صفحة تسجيل الدخول كصفحة البداية
+      home: const LoginScreen(),
+    // home:  MyMenuScreen(), // تعيين صفحة تسجيل الدخول كصفحة البداية
     );
   }
 }

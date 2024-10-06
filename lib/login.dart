@@ -6,7 +6,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'signup.dart';
 import 'reset_pass.dart';
 import 'EditProfilePage.dart'; 
-
+import 'FoodPage.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -58,9 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            //  builder: (context) => ProfilePage(email: email),
-               builder: (context) =>  EditProfilePage(),
+          //  builder: (context) => ProfilePage(email: email),
+              // builder: (context) =>  EditProfilePage(),
               //builder: (context) => HomePage()
+             builder: (context) =>   MyMenuScreen(email: email), 
               ), // انتقل إلى صفحة الرئيسية
         );
       } else {
