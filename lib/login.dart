@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           MaterialPageRoute(
           //  builder: (context) => ProfilePage(email: email),
-              // builder: (context) =>  EditProfilePage(),
+            //   builder: (context) =>  EditProfilePage(),
               //builder: (context) => HomePage()
              builder: (context) =>   MyMenuScreen(email: email), 
               ), // انتقل إلى صفحة الرئيسية

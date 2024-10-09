@@ -84,23 +84,42 @@ Future<void> addComment(String email, int foodId, String comment) async {
     throw Exception('Failed to add comment');
   }
 }
-
-
 class Comment {
   final String text;
   final String firstName;
   final String lastName;
+  final String imageUrl;
 
-  Comment({required this.text, required this.firstName, required this.lastName});
+  Comment({required this.text, required this.firstName, required this.lastName, required this.imageUrl});
 
   factory Comment.fromJson(Map<String, dynamic> json) {
+    String firstNameLower = json['first_name'].toLowerCase(); // تحويل الاسم الأول إلى حروف صغيرة
+    String imageUrl;
+
+    // تحديد صورة المستخدم بناءً على الاسم الأول
+    switch (firstNameLower) {
+      case 'lama' || 'Lama':
+        imageUrl = 'lib/images/lama.jpeg';
+        break;
+      case 'wafaa'|| 'Wafaa':
+        imageUrl = 'lib/images/Wafaa.jpeg';
+        break;
+      case 'awrtani'|| 'Awrtani':
+        imageUrl = 'lib/images/Awrtani.jpeg';
+        break;
+      default:
+        imageUrl = 'lib/images/defult.png'; // الصورة الافتراضية
+    }
+
     return Comment(
       text: json['comment'],
       firstName: json['first_name'],
       lastName: json['last_name'],
+      imageUrl: imageUrl,
     );
   }
 }
+
 
 class MenuItemWidget extends StatefulWidget {
   final MenuItem item;
@@ -198,62 +217,72 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
     );
   }
 
-  Widget buildCommentsSection() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ..._comments.map((comment) {
-            return ListTile(
-              title: Text('${comment.firstName} ${comment.lastName}'),
-              subtitle: Text(comment.text),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  setState(() {
-                    _comments.remove(comment);
-                  });
-                },
-              ),
-            );
-          }).toList(),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: const Color.fromARGB(255, 170, 0, 113)),
-                  ),
-                  child: TextField(
-                    controller: _commentController,
-                    decoration: const InputDecoration(
-                      hintText: 'Add a comment...',
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                    ),
+Widget buildCommentsSection() {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ..._comments.map((comment) {
+          return ListTile(
+            leading: CircleAvatar(
+              backgroundImage: AssetImage(comment.imageUrl), // عرض الصورة الشخصية بشكل دائري
+              radius: 20.0, // حجم الصورة
+            ),
+            title: Text('${comment.firstName} ${comment.lastName}'),
+            subtitle: Text(comment.text),
+            trailing: IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () {
+                setState(() {
+                  _comments.remove(comment);
+                });
+              },
+            ),
+          );
+        }).toList(),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: const Color.fromARGB(255, 170, 0, 113)),
+                ),
+                child: TextField(
+                  controller: _commentController,
+                  decoration: const InputDecoration(
+                    hintText: 'Add a comment...',
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
                   ),
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.send, color: Color.fromARGB(255, 170, 0, 113)),
-                onPressed: () async {
-                  if (_commentController.text.isNotEmpty) {
-                    await addComment(widget.email, widget.item.foodId, _commentController.text); // أضف التعليق مع البريد الإلكتروني المأخوذ من الواجهة
-                    setState(() {
-                      _comments.add(Comment(text: _commentController.text, firstName: 'User', lastName: 'Name'));
-                      _commentController.clear();
-                    });
-                  }
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+            ),
+           IconButton(
+  icon: const Icon(Icons.send, color: Color.fromARGB(255, 170, 0, 113)),
+  onPressed: () async {
+    if (_commentController.text.isNotEmpty) {
+      await addComment(widget.email, widget.item.foodId, _commentController.text);
+      setState(() {
+        _comments.add(Comment(
+          text: _commentController.text, 
+          firstName: 'User', // يمكنك تعديل هذا وفقًا لاسم المستخدم الفعلي
+          lastName: 'Name', 
+          imageUrl: 'lib/images/defult.png', // استخدم الصورة الافتراضية أو الصورة المناسبة هنا
+        ));
+        _commentController.clear();
+      });
+    }
+  },
+)
+
+          ],
+        ),
+      ],
+    ),
+  );
+}
 
   Widget buildVideosSection(BuildContext context) {
     return Padding(
