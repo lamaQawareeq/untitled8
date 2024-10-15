@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import flutter_inappwebview  // تأكد من استيراد المكتبة
 
 @main
 @objc class AppDelegate: FlutterAppDelegate {

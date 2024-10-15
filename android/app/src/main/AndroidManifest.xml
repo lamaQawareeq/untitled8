@@ -31,19 +31,33 @@
             </intent-filter>
         </activity>
 
+        <!-- إضافة النشاط المتعلق بـ InAppWebView -->
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="io.flutter.embedding.android.FlutterActivity"
+                android:value="io.flutter.plugins.flutter_inappwebview.InAppWebViewFlutterPlugin"/>
+        </activity>
+
         <!-- لا تحذف هذه البيانات الميتا. تستخدمها أدوات Flutter لتوليد GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
         
-        <!-- تمكين legacy external storage -->
+        <!-- تمكين legacy external storage (اختياري حسب الحاجة) -->
         <meta-data
             android:name="android:requestLegacyExternalStorage"
             android:value="true"/>
+
     </application>
 
     <!-- إضافة الأذونات اللازمة -->
     <uses-permission android:name="android.permission.INTERNET"/> <!-- إذن الوصول إلى الإنترنت -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/> <!-- إذن الوصول إلى الكاميرا -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- إذن قراءة التخزين الخارجي -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- إذن كتابة التخزين الخارجي -->
@@ -57,4 +71,5 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
 </manifest>
