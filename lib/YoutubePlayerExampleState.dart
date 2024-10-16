@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -12,7 +12,7 @@ class _MyHomePageState extends State<MyHomePage> {
   
   YoutubePlayerController ytcontrol = YoutubePlayerController(
     initialVideoId: 'fK9oJwWcQks', // معرف الفيديو على يوتيوب
-    flags: YoutubePlayerFlags(
+    flags: const YoutubePlayerFlags(
       autoPlay: true, // عدم التشغيل التلقائي
       mute: false, // تشغيل الفيديو على الوضع الصامت
     ),
@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
           showVideoProgressIndicator: true,
           progressIndicatorColor: Colors.green,
           topActions: [
-            SizedBox(width: 8,),
+            const SizedBox(width: 8,),
             Text(ytcontrol.metadata.title)
           ],
         ),

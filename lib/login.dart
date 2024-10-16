@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:device_info_plus/device_info_plus.dart';
 import 'signup.dart';
 import 'reset_pass.dart';
-import 'EditProfilePage.dart'; 
 import 'FoodPage.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

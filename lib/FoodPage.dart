@@ -28,7 +28,7 @@ class MyMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(150, 170, 0, 113),
+        backgroundColor: const Color.fromARGB(150, 170, 0, 113),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -240,7 +240,7 @@ Widget buildCommentsSection() {
               },
             ),
           );
-        }).toList(),
+        }),
         Row(
           children: [
             Expanded(
@@ -298,7 +298,7 @@ Widget buildCommentsSection() {
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: VideoPlayerWidget(videoPath: videoPath),
                 );
-              }).toList(),
+              }),
             ],
           ),
         ],
@@ -310,7 +310,7 @@ Widget buildCommentsSection() {
 class VideoPlayerWidget extends StatefulWidget {
   final String videoPath;
 
-  const VideoPlayerWidget({Key? key, required this.videoPath}) : super(key: key);
+  const VideoPlayerWidget({super.key, required this.videoPath});
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
